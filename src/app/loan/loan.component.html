@@ -1,0 +1,44 @@
+<h1 mat-dialog-title>Simular Préstamo</h1>
+<div mat-dialog-content>
+    <form [formGroup]="loanForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Cédula</mat-label>
+            <input formControlName="cardId" matInput placeholder="Cédula">
+            <mat-icon matSuffix>note</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input formControlName="name" matInput placeholder="Nombre completo">
+            <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Correo electrónico</mat-label>
+            <input formControlName="email" matInput placeholder="Correo electrónico">
+            <mat-icon matSuffix>alternate_email</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Elige una fecha límite de pago</mat-label>
+            <input formControlName="date" matInput [matDatepicker]="picker">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker">
+              <mat-icon matDatepickerToggleIcon>date_range</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-slider (input)="onInputChange($event)"
+            formControlName="amount"
+            thumbLabel
+            [displayWith]="formatLabel"
+            tickInterval="1000"
+            step="1000"
+            min="0"
+            [max]="MAX_SLIDER"
+            aria-label="units">
+        </mat-slider>
+        <span>Cantidad a solicitar: {{ this.amount | mask: 'separator':',' }}</span>
+    </form>
+</div>
+<div mat-dialog-actions [align]="'end'">
+    <button mat-raised-button color="warn" mat-dialog-close>Cancelar</button>
+    <button [disabled]="!this.loanForm.valid" mat-raised-button color="primary" (click)="requestLoan()">Continuar</button>
+</div>
