@@ -8,7 +8,8 @@ Run the command in the terminal `npm install`
 
 ## Install JSON-SERVER library
 
-Run the command `npm i json-server` to install the fake REST API
+Run the command `npm i json-server` to install the fake REST API, 
+Then run this command `json-server --watch db.json`
 
 ## Development server
 
