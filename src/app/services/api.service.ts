@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { ApiResponse } from '../model/ApiResponse';
 
 @Injectable({
@@ -9,18 +10,18 @@ export class ApiService {
 
   constructor(private httpClient: HttpClient) { }
 
-  api = 'http://localhost:3000/loanList';
+  // api = 'https://retoolapi.dev/XwcKWB/data';
 
   postLoan(data: any) {
-    return this.httpClient.post<ApiResponse>(this.api, data)
+    return this.httpClient.post<ApiResponse>(environment.api, data)
   }
 
   getLoan() {
-    return this.httpClient.get<ApiResponse>(this.api)
+    return this.httpClient.get<ApiResponse>(environment.api)
   }
 
   putLoan(data: any, id: string) {
-    return this.httpClient.put<ApiResponse>(this.api+'/'+id, data)
+    return this.httpClient.put<ApiResponse>(environment.api+'/'+id, data)
   }
 
   refresh(): void {
